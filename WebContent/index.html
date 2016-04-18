@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Using Location Search with XHR</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<h1 class="title">Using <b>location.search</b> with <b>XHR</b></h1>
+	<br /><br /><br />
+	<div class="selection">
+		<a href="?id=0001">USER 0001</a>
+		<a href="?id=0002">USER 0002</a>
+		<a href="?id=0003">USER 0003</a>
+		<a href="?id=0004">USER 0004</a>
+	</div>
+	
+	<h2 id="raw_response" class="response"></h2>
+	<h2 id="response" class="response"></h2>
+	
+	<script>
+		function $ (id) {
+			return document.getElementById(id);
+		}
+		
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () {
+			if (xhr.status === 200 && xhr.readyState === 4) {
+				var data = JSON.parse(xhr.responseText);
+				$("raw_response").innerHTML = "SERVER RESPONSE: <br /><br />" + JSON.stringify(data);
+				$("response").innerHTML = "USER NAME: <br /><br />" + data.user;
+			}
+		}
+		
+		var search = location.search;
+		
+		xhr.open("GET", "./content" + search, true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send();
+		
+	</script>
+</body>
+</html>

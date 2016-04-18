@@ -1,0 +1,18 @@
+body {
+	text-align: center;	
+}
+
+.title {	
+	font-size: 40px;
+	text-decoration: underline;
+}
+
+.selection {
+	font-size: 20px;	
+}
+
+.response {
+	padding: 15px;
+	color: #fff;
+	background-color: #3C3B56;
+}
